@@ -1,2 +1,22 @@
-document.getElementById('x').innerText = "6";
-document.getElementById('y').innerText = "8";
+
+function fibonacci(x) {
+    let previous1 = 1;
+    let previous2 = 0; 
+    let y = 1;
+    
+    for (let i = 0; i < x; i++) { 
+        y = previous1 + previous2;
+        previous1 = previous2;
+        previous2 = y;
+    } 
+    return y;
+}
+
+x = 7;
+console.log(fibonacci(x));
+y = fibonacci(x);
+
+document.getElementById('x').innerText = [x];
+document.getElementById('y').innerText = [y];
+
+
