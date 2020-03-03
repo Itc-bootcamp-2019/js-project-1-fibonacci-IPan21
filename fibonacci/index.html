@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
-<style>
-#x {
-    color:blue;
-}
-
-#y {
-    color:blue;
-}
-</style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <span>The Fibonacci of 
-        <span id="x">d</span> is 
-        <span id="y">d</span>
-    </span>
+    <div class="headline">Fibonacci Calculator</div>
+    <div class="fibonacciInput">
+    <span>The Fibonacci of </span>
+    <input type="text" placeholder="#" id="myInput">
+    <button type="button" onclick="getInputValue();" id="myButton">Is</button>
+    <div type="text" id="result"></div>
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>
+
 
 

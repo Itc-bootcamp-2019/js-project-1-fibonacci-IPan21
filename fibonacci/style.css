@@ -1,0 +1,75 @@
+body {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+}
+
+#x {
+    color:blue;
+}
+
+#y {
+    color:blue;
+}
+
+#myInput {
+    width: 40px;
+    margin-left: 14px;
+    width: 86px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#myButton {
+    color: white;
+    width: 39px;
+    height: 38px;
+    background: #0275D8;
+    border: 1px solid #0275D8;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 21px;
+    margin-left: 14px;
+}
+
+.fibonacciInput {
+    font-size: 24px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    margin-left: 168px;
+}
+
+.fibonacciInput input[type=text] {
+    padding-left: 15px;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.headline {
+    width: 672px;
+    height: 79px;
+    font-weight: normal;
+    font-size: 72px;
+    line-height: 79px;
+    margin-top: 100px;
+    margin-left: 168px;
+    margin-bottom: 50px;
+}
+
+#result {
+    margin-left: 14px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+    text-decoration-line: underline;
+
+color: #373A3C;
+}

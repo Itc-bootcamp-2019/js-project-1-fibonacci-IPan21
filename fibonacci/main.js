@@ -1,4 +1,14 @@
 
+function getInputValue(){
+    let inputVal = document.getElementById("myInput").value;
+    console.log(fibonacci(inputVal));
+    document.getElementById("result").textContent="loading...";
+    setTimeout(() => { document.getElementById("result").textContent=(fibonacci(inputVal)); }, 500);
+    
+    
+}
+
+
 function fibonacci(x) {
     let previous1 = 1;
     let previous2 = 0; 
@@ -12,11 +22,6 @@ function fibonacci(x) {
     return y;
 }
 
-x = 7;
-console.log(fibonacci(x));
-y = fibonacci(x);
-
-document.getElementById('x').innerText = [x];
-document.getElementById('y').innerText = [y];
+function fibonacciServer()
 
 
