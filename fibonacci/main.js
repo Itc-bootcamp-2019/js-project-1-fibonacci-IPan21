@@ -22,6 +22,12 @@ function fibonacci(x) {
     return y;
 }
 
-function fibonacciServer()
+
+// x = 7;
+// console.log(fibonacci(x));
+// y = fibonacci(x);
+
+// document.getElementById('x').innerText = [x];
+// document.getElementById('y').innerText = [y];
 
 
