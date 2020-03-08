@@ -50,7 +50,6 @@ function validateInput() {
       errorStyle()
       document.getElementById("validateInput").innerHTML = text;
     } else {
-        text = "Input OK";
         getInputValue();
         getServerResults()
     }
@@ -119,8 +118,40 @@ function getServerResults() {
         }
 
     })
-    .catch(error => console.error(error))}
+    .catch(error => console.error(error))
+}
+
+function getInputValueOffline(){
+    let inputVal = document.getElementById("myInput").value;
+    console.log(fibonacci(inputVal));
+    // responseOkWindow()
+    document.getElementById("result").textContent=(fibonacci(inputVal));
+
+}
+
+function fibonacci(x) {
+    let previous1 = 1;
+    let previous2 = 0; 
+    let result = 1;
+    
+    for (let i = 0; i < x; i++) { 
+        result = previous1 + previous2;
+        previous1 = previous2;
+        previous2 = result;
+    } 
+    return result;
+}
+
+
+function checkbox() {
+    if (document.getElementById("checkbox").checked == true) {
+        validateInput();
+    } else {
+        getInputValueOffline()
+    }
+}
+
 
 document
 .getElementById('myButton')
-.addEventListener('click', validateInput);
+.addEventListener('click', checkbox);

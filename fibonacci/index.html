@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
 </head>
+
 <body>
     <div class="headline">Fibonacci Calculator</div>
+
     <div class="fibonacciInput">
-    <span>The Fibonacci of </span>
-    <input type="text" placeholder="#" id="myInput">
-    <button type="button" onclick="getInputValue();" id="myButton">Is</button>
-    <div type="text" id="result"></div>
+        <span>The Fibonacci of </span>
+        <input type="text" placeholder="#" id="myInput">
+        <button type="button" id="myButton">Is</button>
+        <div type="text" id="result"></div>
+        <div id="loading" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="ServerError"></div>
     </div>
+    <div id="validateInput"></div>
+
+    <input type="checkbox" id="checkbox">
+    <label for="checkbox">Save calculation</label><br>
+
+    <div id="content">
+        <div id="resultHeadline">Result </div>
+        <div id="loadingResults" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+        <ul id="myListResults">
+        </ul>
+
+    
 
     <script src="main.js"></script>
 </body>
+
 </html>
-
-
-

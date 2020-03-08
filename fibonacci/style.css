@@ -12,6 +12,9 @@ body {
     color:blue;
 }
 
+#checkbox {
+    margin-left: 168px;
+}
 #myListResults {
     margin-top: 40px;
     font-size: 24px;
