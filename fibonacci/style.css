@@ -12,6 +12,35 @@ body {
     color:blue;
 }
 
+#myListResults {
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 60px;
+    list-style: none;
+    margin-left: 120px;
+    
+}
+
+#resultHeadline {
+    margin-top: 87px;
+    font-size: 54px;
+    line-height: 24px;
+    text-decoration: none;
+    margin-left: 164px;
+}
+
+#myListResults li {
+    font-size: 24px;
+    line-height: 50px;
+    border-bottom: 1px solid #373A3C;
+    width: 800px;
+}
+
+#content {
+    display: flex;
+    align-items: baseline;
+}
+
 #myInput {
     width: 40px;
     margin-left: 14px;
@@ -23,6 +52,37 @@ body {
     border-radius: 4px;
     font-size: 16px;
     line-height: 24px;
+}
+
+.myInputError {
+    width: 40px;
+    margin-left: 14px;
+    width: 86px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid #D9534F!important;
+    color: #D9534F;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#validateInput {
+    margin-left: 280px;
+    margin-top: 8px;
+    background: #F2DEDE;
+    border: 1px solid #EBCCCC;
+    border-radius: 4px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    width: 160px;
+    text-align: center;
+    color: #A94442;
+    visibility: hidden;
 }
 
 #myButton {
@@ -38,6 +98,25 @@ body {
     margin-left: 14px;
 }
 
+#loading {
+    visibility: hidden;
+    margin-left: 20px;
+}
+
+#loadingResults {
+    visibility: hidden;
+    margin-left: 20px;
+}
+
+#ServerError {
+    visibility: hidden;
+    color: #D9534F;
+    font-size: 16px;
+    line-height: 24px;
+    display: inline;
+
+}
+
 .fibonacciInput {
     font-size: 24px;
     line-height: 24px;
@@ -51,6 +130,10 @@ body {
     font-weight: normal;
     font-size: 24px;
     line-height: 24px;
+}
+
+#serverResult {
+    margin-left: 20px;
 }
 
 .headline {
