@@ -15,6 +15,7 @@ function ServerErrorStyle() {
     document.getElementById('myInput').className = "myInputError";
     document.getElementById("ServerError").style.visibility = 'visible';
     document.getElementById('loading').style.visibility = 'hidden'; 
+    document.getElementById('loadingResults').style.visibility = 'hidden';
 }
 
 function hideLoadingSpinner() {
@@ -42,14 +43,15 @@ function validateInput() {
       errorStyle()
       document.getElementById("validateInput").innerHTML = text;
     } else if (inputVal == 42){
-      ServerErrorStyle()
-      fourtytwo()
+    //   ServerErrorStyle()
+    //   fourtytwo()
+    getInputValueCatch()
     } else if (inputVal > 50){
       text = "Can't be larger than 50";
       errorStyle()
       document.getElementById("validateInput").innerHTML = text;
     } else {
-        getInputValue();
+        getInputValueCatch();
         getServerResults()
     }
   }
@@ -74,30 +76,52 @@ function validateInput() {
 //     .catch(error => document.getElementById("ServerError").innerHTML = (error));
 // }
 
-async function fourtytwo() {
-    try {
-        const response = await fetch('http://localhost:5050/fibonacci/42')
-        const i = await response.text();
-        console.log(i);
-        throw Error(i)
-    } catch(error) {
-        document.getElementById("ServerError").innerHTML = (error)
-    }
-
-}
-
-async function getInputValue(){
-    try {
-        let inputVal = document.getElementById("myInput").value;
-        getInputStyle();
-        const response = await fetch('http://localhost:5050/fibonacci/' + inputVal);
+async function getInputValueCatch() {
+try {
+    getInputStyle();
+    let inputVal = document.getElementById("myInput").value;
+    const response = await fetch('http://localhost:5050/fibonacci/' + inputVal);
+    if (!response.ok) {
+        ServerErrorStyle()
+        let text = await response.text();
+        console.log(text)
+        throw Error(text);
+    } else {
+        
         const data = await response.json();
         responseOkWindow();
         document.getElementById("result").textContent=(data.result);
-    } catch(error) {
-        console.log(error)
     }
+} catch(error) {
+    document.getElementById("ServerError").innerHTML = (error)
 }
+}
+
+
+// async function fourtytwo() {
+//     try {
+//         const response = await fetch('http://localhost:5050/fibonacci/42')
+//         const i = await response.text();
+//         console.log(i);
+//         throw Error(i)
+//     } catch(error) {
+//         document.getElementById("ServerError").innerHTML = (error)
+//     }
+
+// }
+
+// async function getInputValue(){
+//     try {
+//         let inputVal = document.getElementById("myInput").value;
+//         getInputStyle();
+//         const response = await fetch('http://localhost:5050/fibonacci/' + inputVal);
+//         const data = await response.json();
+//         responseOkWindow();
+//         document.getElementById("result").textContent=(data.result);
+//     } catch(error) {
+//         console.log(error)
+//     }
+// }
 
 async function getServerResults(){
     try {
