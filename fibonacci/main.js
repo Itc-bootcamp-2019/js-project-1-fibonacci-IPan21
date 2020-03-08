@@ -42,7 +42,6 @@ function validateInput() {
       errorStyle()
       document.getElementById("validateInput").innerHTML = text;
     } else if (inputVal == 42){
-      text = "Server Error: 42 is the meaning of life";
       ServerErrorStyle()
       fourtytwo()
     } else if (inputVal > 50){
@@ -75,56 +74,78 @@ function validateInput() {
 //     .catch(error => document.getElementById("ServerError").innerHTML = (error));
 // }
 
-function fourtytwo() {
-    fetch('http://localhost:5050/fibonacci/42')
-    .then(async response => {
-        let i = await response.text();
+async function fourtytwo() {
+    try {
+        const response = await fetch('http://localhost:5050/fibonacci/42')
+        const i = await response.text();
         console.log(i);
-        throw Error(i)})
-    .catch(error => document.getElementById("ServerError").innerHTML = (error));
+        throw Error(i)
+    } catch(error) {
+        document.getElementById("ServerError").innerHTML = (error)
+    }
 
 }
 
-function getInputValue(){
-    let inputVal = document.getElementById("myInput").value;
-    getInputStyle()
-    fetch('http://localhost:5050/fibonacci/' + inputVal)
-        .then(response => response.json())
-        .then(data => {
-            responseOkWindow()
-            document.getElementById("result").textContent=(data.result)
-        })
-        .catch(error => console.log(error));
-    
+async function getInputValue(){
+    try {
+        let inputVal = document.getElementById("myInput").value;
+        getInputStyle();
+        const response = await fetch('http://localhost:5050/fibonacci/' + inputVal);
+        const data = await response.json();
+        responseOkWindow();
+        document.getElementById("result").textContent=(data.result);
+    } catch(error) {
+        console.log(error)
+    }
 }
 
-function getServerResults() {
-    fetch('http://localhost:5050/getFibonacciResults')
-    .then(response => response.json())
-    .then(data => {
+async function getServerResults(){
+    try {
+        const response = await fetch('http://localhost:5050/getFibonacciResults');
+        const data = await response.json();
         document.getElementById("myListResults").style.visibility = 'visible';
-        const sortedData = data.results.sort((a, b) => b.createdDate - a.createdDate);
+        const sortedData = await data.results.sort((a, b) => b.createdDate - a.createdDate);
         console.log(sortedData)
         console.log(sortedData[0])
-
-        for (let i = 0; i < 10; i++) {
-            attempt = sortedData[i];
-            let d = new Date();
-            attempt.createdDate = d.toUTCString()
-            let ul = document.getElementById("myListResults");
-            let li = document.createElement("li");
-            li.innerHTML = ('The Fibonacci of ' + `<b>` + attempt.number + `</b>` + ' is ' + `<b>` + attempt.result + `</b>` + '. Calculated at ' + attempt.createdDate)
-            ul.appendChild(li);
+                for (let i = 0; i < 10; i++) {
+                attempt = sortedData[i];
+                let d = new Date();
+                attempt.createdDate = d.toUTCString()
+                let ul = document.getElementById("myListResults");
+                let li = document.createElement("li");
+                li.innerHTML = ('The Fibonacci of ' + `<b>` + attempt.number + `</b>` + ' is ' + `<b>` + attempt.result + `</b>` + '. Calculated at ' + attempt.createdDate)
+                ul.appendChild(li);
+            }
+        } catch(error) {
+            console.log(error)
         }
-
-    })
-    .catch(error => console.error(error))
 }
+// function getServerResults() {
+//     fetch('http://localhost:5050/getFibonacciResults')
+//     .then(response => response.json())
+//     .then(data => {
+//         document.getElementById("myListResults").style.visibility = 'visible';
+//         const sortedData = data.results.sort((a, b) => b.createdDate - a.createdDate);
+//         console.log(sortedData)
+//         console.log(sortedData[0])
+
+//         for (let i = 0; i < 10; i++) {
+//             attempt = sortedData[i];
+//             let d = new Date();
+//             attempt.createdDate = d.toUTCString()
+//             let ul = document.getElementById("myListResults");
+//             let li = document.createElement("li");
+//             li.innerHTML = ('The Fibonacci of ' + `<b>` + attempt.number + `</b>` + ' is ' + `<b>` + attempt.result + `</b>` + '. Calculated at ' + attempt.createdDate)
+//             ul.appendChild(li);
+//         }
+
+//     })
+//     .catch(error => console.error(error))
+// }
 
 function getInputValueOffline(){
     let inputVal = document.getElementById("myInput").value;
     console.log(fibonacci(inputVal));
-    // responseOkWindow()
     document.getElementById("result").textContent=(fibonacci(inputVal));
 
 }
