@@ -1,4 +1,5 @@
 function clearWindow() {
+    document.getElementById('myInput').className = "myInput";
     document.getElementById("result").style.display = 'none';
     document.getElementById("validateInput").style.visibility = 'hidden';
     document.getElementById('loading').style.visibility = 'hidden'; 
@@ -43,8 +44,6 @@ function validateInput() {
       errorStyle()
       document.getElementById("validateInput").innerHTML = text;
     } else if (inputVal == 42){
-    //   ServerErrorStyle()
-    //   fourtytwo()
     getInputValueCatch()
     } else if (inputVal > 50){
       text = "Can't be larger than 50";
@@ -55,26 +54,6 @@ function validateInput() {
         getServerResults()
     }
   }
-
-
-// async function handleErrors(response) {
-//     if (!response.ok) {
-//         let text = await response.text();
-//         console.log(text)
-//         throw Error(text);
-//     }
-//     return response;
-// }
-
-// function fourtytwo() {
-//     fetch('http://localhost:5050/fibonacci/42')
-//         .then(handleErrors) 
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data.result)
-//         })
-//     .catch(error => document.getElementById("ServerError").innerHTML = (error));
-// }
 
 async function getInputValueCatch() {
 try {
@@ -87,7 +66,6 @@ try {
         console.log(text)
         throw Error(text);
     } else {
-        
         const data = await response.json();
         responseOkWindow();
         document.getElementById("result").textContent=(data.result);
@@ -97,75 +75,44 @@ try {
 }
 }
 
-
-// async function fourtytwo() {
-//     try {
-//         const response = await fetch('http://localhost:5050/fibonacci/42')
-//         const i = await response.text();
-//         console.log(i);
-//         throw Error(i)
-//     } catch(error) {
-//         document.getElementById("ServerError").innerHTML = (error)
-//     }
-
-// }
-
-// async function getInputValue(){
-//     try {
-//         let inputVal = document.getElementById("myInput").value;
-//         getInputStyle();
-//         const response = await fetch('http://localhost:5050/fibonacci/' + inputVal);
-//         const data = await response.json();
-//         responseOkWindow();
-//         document.getElementById("result").textContent=(data.result);
-//     } catch(error) {
-//         console.log(error)
-//     }
-// }
-
 async function getServerResults(){
     try {
+        let ul = document.getElementById("myListResults");
+        ul.innerHTML = "";
         const response = await fetch('http://localhost:5050/getFibonacciResults');
         const data = await response.json();
         document.getElementById("myListResults").style.visibility = 'visible';
-        const sortedData = await data.results.sort((a, b) => b.createdDate - a.createdDate);
+        howToSort = document.getElementById('dropdown').value;
+        console.log(document.getElementById('dropdown').value)
+            if (howToSort == 4) {
+                data.results.sort((a, b) => b.createdDate - a.createdDate);
+            } else if (howToSort == 3) {
+                data.results.sort((a, b) => a.createdDate - b.createdDate);
+            } else if (howToSort == 2) {
+                data.results.sort((a, b) => b.number - a.number);
+            } else if (howToSort == 1) {
+                data.results.sort((a, b) => a.number - b.number);
+            } else {
+                console.log('I don"t want to sort')
+            }
+        console.log(data.results)
+        const sortedData = data.results;
+        // const sortedData = data.results.sort((a, b) => b.createdDate - a.createdDate);
         console.log(sortedData)
         console.log(sortedData[0])
                 for (let i = 0; i < 10; i++) {
                 attempt = sortedData[i];
-                let d = new Date();
-                attempt.createdDate = d.toUTCString()
+                console.log(attempt);
+                let d = new Date(attempt.createdDate);
                 let ul = document.getElementById("myListResults");
                 let li = document.createElement("li");
-                li.innerHTML = ('The Fibonacci of ' + `<b>` + attempt.number + `</b>` + ' is ' + `<b>` + attempt.result + `</b>` + '. Calculated at ' + attempt.createdDate)
+                li.innerHTML = ('The Fibonacci of ' + `<b>` + attempt.number + `</b>` + ' is ' + `<b>` + attempt.result + `</b>` + '. Calculated at ' + d.toString())
                 ul.appendChild(li);
             }
         } catch(error) {
             console.log(error)
         }
 }
-// function getServerResults() {
-//     fetch('http://localhost:5050/getFibonacciResults')
-//     .then(response => response.json())
-//     .then(data => {
-//         document.getElementById("myListResults").style.visibility = 'visible';
-//         const sortedData = data.results.sort((a, b) => b.createdDate - a.createdDate);
-//         console.log(sortedData)
-//         console.log(sortedData[0])
-
-//         for (let i = 0; i < 10; i++) {
-//             attempt = sortedData[i];
-//             let d = new Date();
-//             attempt.createdDate = d.toUTCString()
-//             let ul = document.getElementById("myListResults");
-//             let li = document.createElement("li");
-//             li.innerHTML = ('The Fibonacci of ' + `<b>` + attempt.number + `</b>` + ' is ' + `<b>` + attempt.result + `</b>` + '. Calculated at ' + attempt.createdDate)
-//             ul.appendChild(li);
-//         }
-
-//     })
-//     .catch(error => console.error(error))
-// }
 
 function getInputValueOffline(){
     let inputVal = document.getElementById("myInput").value;
@@ -174,17 +121,27 @@ function getInputValueOffline(){
 
 }
 
-function fibonacci(x) {
-    let previous1 = 1;
-    let previous2 = 0; 
-    let result = 1;
+// function fibonacci(x) {
+//     let previous1 = 1;
+//     let previous2 = 0; 
+//     let result = 1;
     
-    for (let i = 0; i < x; i++) { 
-        result = previous1 + previous2;
-        previous1 = previous2;
-        previous2 = result;
-    } 
-    return result;
+//     for (let i = 0; i < x; i++) { 
+//         result = previous1 + previous2;
+//         previous1 = previous2;
+//         previous2 = result;
+//     } 
+//     return result;
+// }
+
+function fibonacci(x) {
+    if (x == 0){
+        return 0;
+    } else if (x == 1) {
+        return 1;
+    } else{
+        return fibonacci(x-2) + fibonacci(x-1);
+      }
 }
 
 
@@ -200,3 +157,8 @@ function checkbox() {
 document
 .getElementById('myButton')
 .addEventListener('click', checkbox);
+
+document
+.getElementById('dropdown')
+.addEventListener('change', getServerResults);
+

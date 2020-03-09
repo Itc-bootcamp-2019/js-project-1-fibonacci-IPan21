@@ -150,6 +150,16 @@ body {
     margin-bottom: 50px;
 }
 
+#dropdown {
+    margin-top: 20px;
+    margin-left: 168px;
+    margin-bottom: 20px;
+    background-color: #E6E6E6;
+    width: 149px;
+    height: 42px;
+
+}
+
 #result {
     margin-left: 14px;
     font-weight: bold;
@@ -159,3 +169,6 @@ body {
 
 color: #373A3C;
 }
+
+
+
